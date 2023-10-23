@@ -1,8 +1,14 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import styles from './conference.module.css'
+import ConfImage from '../images/home-image-2.jpg'
 
 const page = () => {
   return (
-    <div>
+    <>
+      <div className={styles.bgWrap}>
+        <Image src={ConfImage} fill alt='Our story' style={{objectFit: 'cover'}} placeholder="blur" sizes="100vw" quality={100}/>
+      </div>
       <h1>Welcome to Conference page</h1>
 
       <h2>
@@ -11,7 +17,7 @@ const page = () => {
       <h2>
         <Link href='/conference/sessions'>Sessions</Link>
       </h2>
-    </div>
+    </>
   )
 }
 

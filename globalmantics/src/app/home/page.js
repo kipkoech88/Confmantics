@@ -7,7 +7,7 @@ const page = () => {
   return (
     <>
       <div className={styles.bgWrap}>
-        <Image src={bgImage} alt="Background  image" width={500} height={500} quality={100} placeholder='blur' sizes='100vw' fill style={{objectFit: 'cover'}} />
+        <Image src={bgImage} alt="Background  image" quality={100} placeholder='blur' sizes='100vw' fill style={{objectFit: 'cover'}} />
       </div>
       <h1>Humble beginings, the story of life</h1>
       <p className={styles.bgText}>
