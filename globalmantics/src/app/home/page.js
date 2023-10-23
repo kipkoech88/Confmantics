@@ -1,19 +1,19 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import styles from './home.module.css'
+import bgImage from '../images/home-image-1.jpg'
 
 const page = () => {
   return (
-    <div>
-      <h1>Welcome to Home Page</h1>
-      <h2>
-        <Link href='/blog'>Blog</Link>
-      </h2>
-      <h2>
-        <Link href='/settings'>Settings</Link>
-      </h2>
-      <h2 className='text-large'>
-        <Link href='/conference'>Conference</Link>
-      </h2>
-    </div>
+    <>
+      <div className={styles.bgWrap}>
+        <Image src={bgImage} alt="Background  image" width={500} height={500} quality={100} placeholder='blur' sizes='100vw' fill style={{objectFit: 'cover'}} />
+      </div>
+      <h1>Humble beginings, the story of life</h1>
+      <p className={styles.bgText}>
+        How we became farmers of the future, telling stories of tommorow today
+      </p>
+    </>
   )
 }
 

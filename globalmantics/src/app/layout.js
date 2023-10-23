@@ -2,6 +2,7 @@ import { Inter, Open_Sans } from 'next/font/google'
 import './globals.css'
 import Link from 'next/link'
 import styles from './rootStyle.module.css'
+import './global.css'
 
 const inter = Inter({ subsets: ['latin'] })
 const openSans = Open_Sans({
@@ -19,7 +20,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={openSans.className}>
       <head/>
       <body className={inter.className}>
-      <header>
+      <header className="w-full bg-[#212121] text-[#fff]  text-center pt-[50px] px-[0px] pb-[50px] text-center">
       <h2>
         <Link className={styles.homeLink} href='/home'>Globalmantics</Link>
       </h2>
