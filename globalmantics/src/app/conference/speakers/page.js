@@ -24,7 +24,9 @@ const page = async () => {
       <h1>Welcome to GlobalMantics Speakers</h1>
       {data.speakers.map(({id, name, bio}) => (
         <div key= {id} className={styles.infoContainer}>
+          <Link href={`/conference/speakers/${name}`} className={styles.bgLinks}>
           <h3 className={styles.titleText}>{name}</h3>
+          </Link>
           <p className={styles.descText}>{bio}</p>
         </div>
       ))}
