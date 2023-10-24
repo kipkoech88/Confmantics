@@ -1,30 +1,31 @@
-import styles from '../../conference.module.css'
-import {speakerJson} from '../page'
+import { speakerJson } from "../page";
+import styles from "../../conference.module.css";
 
-async function fetchSpeakerInfo(params){
+function fetchSpeakerInfo(params) {
+  // API call, DB Query, fetch from the app
 
-    const speakerInfo = speakerJson.speakers.find((speaker) => speaker.name ===  params.slug)
+  const speakerInfo = speakerJson.speakers?.find(
+    (speaker) => speaker.name == params.slug
+  );
 
-    return speakerInfo;
+  return speakerInfo;
 }
 
-const page = async ({params}) => {
+export default async function Page({ params }) {
+  const speakerInfo = fetchSpeakerInfo(params);
 
-    const speakerInfo = await fetchSpeakerInfo();
+  const { name, bio, sessions } = speakerInfo;
 
-    const [name, bio, sessions] = speakerInfo;
-
-    return (
-      <div className={styles.parentContainer}>
-            <h3 className={styles.titleText}>{name}</h3>
-            <h5 className={styles.descText}>About: {bio}</h5>
-            {sessions && sessions.map(({name, id}) =>(
-                <div key={id}>
-                    <h5 className={styles.descText}>Sessions: {name}</h5>
-                </div>
-            )}
-      </div>
-    )
-  }
-  
-  export default page
+  return (
+    <div className={styles.infoContainer}>
+      <h3 className={styles.titleText}>{name}</h3>
+      <h5 className={styles.descText}>About: {bio}</h5>
+      {sessions &&
+        sessions.map(({ name, id }) => (
+          <div key={id}>
+            <h5 className={styles.descText}>Session: {name}</h5>
+          </div>
+        ))}
+    </div>
+  );
+}

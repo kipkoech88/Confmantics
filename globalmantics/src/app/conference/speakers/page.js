@@ -1,13 +1,15 @@
 import Link from 'next/link'
 import styles from '../conference.module.css'
 
+export let speakerJson = {}
+
 async function fetchspeakers() {
   const res = await fetch("https://raw.githubusercontent.com/adhithiravi/Consuming-Graphql-Apollo/master/api/data/speakers.json",
   {next: {revalidate: 20}}
   )
 
   const data = await res.json()
-
+  speakerJson = data
   return data
 }
 
