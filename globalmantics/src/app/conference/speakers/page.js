@@ -1,42 +1,39 @@
-import Link from 'next/link'
-import styles from '../conference.module.css'
+import styles from "../conference.module.css";
+import Link from "next/link";
 
-export let speakerJson = {}
+export let speakerJson = {};
 
-async function fetchspeakers() {
-  const res = await fetch("https://raw.githubusercontent.com/adhithiravi/Consuming-Graphql-Apollo/master/api/data/speakers.json",
-  {next: {revalidate: 20}}
-  )
+// Static data fetching
+async function fetchSpeakers() {
+  const response = await fetch(
+    "https://raw.githubusercontent.com/adhithiravi/Consuming-GraphqL-Apollo/master/api/data/speakers.json"
+  );
 
-  const data = await res.json()
-  speakerJson = data
-  return data
+  const data = await response.json();
+  speakerJson = data;
+  return data;
 }
 
-
-const page = async () => {
-
-  const data = await fetchspeakers()
+export default async function Page() {
+  const data = await fetchSpeakers();
 
   return (
     <div className={styles.parentContainer}>
-      <div className='self-start whitespace-nowrap rounded-lg bg-gray-700 py-1 text-sm font-medium tabular-nums'>
-        Last Rendererd: {new Date().toLocaleTimeString()}
+      <div className="self-start whitespace-nowrap rounded-lg bg-gray-700 px-3 py-1 text-sm font-medium tabular-nums text-gray-100">
+        Last Rendered: {new Date().toLocaleTimeString()}
       </div>
-      <h1>Welcome to GlobalMantics Speakers</h1>
-      {data.speakers.map(({id, name, bio}) => (
-        <div key= {id} className={styles.infoContainer}>
-          <Link href={`/conference/speakers/${name}`} className={styles.bgLinks}>
-          <h3 className={styles.titleText}>{name}</h3>
+      <h1>Welcome to Globomantics Speakers</h1>
+      {data.speakers.map(({ id, name, bio }) => (
+        <div key={id} className={styles.infoContainer}>
+          <Link
+            className={styles.bgLinks}
+            href={`/conference/speakers/${name}`}
+          >
+            <h3 className={styles.titleText}>{name}</h3>
           </Link>
-          <p className={styles.descText}>{bio}</p>
+          <h5 className={styles.descText}>{bio}</h5>
         </div>
       ))}
-      <h2>
-        <Link href='/conference'>Back to Conference</Link>
-      </h2>
     </div>
-  )
+  );
 }
-
-export default page
